@@ -111,7 +111,8 @@ router.post(
       weight,
     } = req.body;
 
-    const rootUrl = `https://backend-abangku-ecommerce.onrender.com`;
+    const rootUrl = `${req.protocol}://${req.get("host")}`;
+
     //   console.log(req.body);
     try {
       const product = await prisma.$transaction(async (tx) => {
