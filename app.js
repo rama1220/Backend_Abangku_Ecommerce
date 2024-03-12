@@ -6,7 +6,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://abangku-ecommerce.vercel.app"],
+    origin: ["https://abangku-ecommerce.vercel.app"", "http://127.0.0.1:5173", "https://abangku-ecommerce.vercel.app"],
     credentials: true,
   })
 );
