@@ -4,15 +4,27 @@ import cors from "cors";
 
 const app = express();
 
-// Konfigurasi CORS
+// Konfigurasi CORS yang lebih dinamis
+const allowedOrigins = [
+  "https://abangku-ecommerce.vercel.app",
+  "http://localhost:5173",
+  "http://127.0.0.1:5173"
+];
+
 const corsOptions = {
-  origin: ["https://abangku-ecommerce.vercel.app", "http://localhost:5173", "http://127.0.0.1:5173"], // Tambahkan origin untuk Vercel dan localhost
-  credentials: true, // Mengizinkan cookie dan autentikasi sesi
-  methods: "GET, POST, OPTIONS, PUT, PATCH, DELETE", // Metode HTTP yang diizinkan
-  allowedHeaders: "Content-Type, Authorization, X-Requested-With", // Header yang diizinkan
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+  allowedHeaders: "Content-Type, Authorization, X-Requested-With"
 };
 
-app.use(cors(corsOptions)); // Gunakan corsOptions untuk middleware cors
+app.use(cors(corsOptions));
 
 // Middleware untuk parsing JSON
 app.use(express.json());
