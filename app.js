@@ -5,7 +5,7 @@ import cors from "cors";
 const app = express();
 app.use(
   cors({
-    origin: ["https://abangku-ecommerce.vercel.app", "https://abangku-ecommerce.vercel.app"],
+    origin: ["https://abangku-ecommerce.vercel.app", "http://127.0.0.1:5173"],
     credentials: true,
   })
 );
