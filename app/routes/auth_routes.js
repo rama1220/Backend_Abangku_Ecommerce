@@ -61,7 +61,7 @@ router.post("/login", validateLogin, async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: error.message });
   }
 });
 
