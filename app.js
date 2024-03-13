@@ -1,34 +1,19 @@
 import express from "express";
-import cors from "cors";
 import router from "./app/routes/routes.js";
+import cors from "cors";
 
 const app = express();
-app.use(
-  cors({
-    origin: ["https://abangku-ecommerce.vercel.app"],
-    credentials: true,
-  })
-);
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://abangku-ecommerce.vercel.app");
-  res.header("Access-Control-Allow-Headers", true);
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
-  next();
-});
-app.options("*", cors());
+
+// Konfigurasi CORS disederhanakan
+app.use(cors({
+  origin: "https://abangku-ecommerce.vercel.app", // Menggunakan string langsung karena hanya satu origin
+  credentials: true, // Mengizinkan cookies lintas asal (misal, untuk sesi)
+}));
+
 app.use(express.json());
 app.use(router);
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World!');
-// });
-
-// // Rute untuk endpoint "/products"
-// app.get('/products', (req, res) => {
-//   res.send('List of products');
-// });
-
-
+// Tidak perlu secara manual menetapkan header CORS atau menggunakan app.options secara eksplisit
+// karena sudah ditangani oleh middleware cors.
 
 export default app;
