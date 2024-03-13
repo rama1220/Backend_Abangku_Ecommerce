@@ -3,19 +3,32 @@ import router from "./app/routes/routes.js";
 import cors from "cors";
 
 const app = express();
-
-// Mengaktifkan CORS untuk domain yang ditentukan dan mengizinkan credentials
 app.use(
   cors({
-    origin: ["https://abangku-ecommerce.vercel.app"], // Izinkan domain ini untuk membuat request
-    credentials: true, // Izinkan credentials seperti cookies, authorization headers, dll.
+    origin: ["https://abangku-ecommerce.vercel.app"],
+    credentials: true,
   })
 );
-
-// Middleware untuk parsing request dengan content-type - application/json
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://abangku-ecommerce.vercel.app");
+  res.header("Access-Control-Allow-Headers", true);
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+  next();
+});
+app.options("*", cors());
 app.use(express.json());
-
-// Menggunakan router dari file eksternal
 app.use(router);
+
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
+// });
+
+// // Rute untuk endpoint "/products"
+// app.get('/products', (req, res) => {
+//   res.send('List of products');
+// });
+
+
 
 export default app;
