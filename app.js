@@ -16,7 +16,7 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
   next();
 });
-app.options("*", cors());
+app.options("https://abangku-ecommerce.vercel.app", cors());
 app.use(express.json());
 app.use(router);
 
