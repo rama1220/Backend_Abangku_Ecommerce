@@ -6,7 +6,7 @@ const app = express();
 
 // Konfigurasi CORS disederhanakan
 app.use(cors({
-  origin: "https://abangku-ecommerce.vercel.app/*", // Menggunakan string langsung karena hanya satu origin
+  origin: "https://abangku-ecommerce.vercel.app", // Menggunakan string langsung karena hanya satu origin
   credentials: true, // Mengizinkan cookies lintas asal (misal, untuk sesi)
 }));
 
