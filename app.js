@@ -1,6 +1,6 @@
 import express from "express";
-import router from "./app/routes/routes.js";
 import cors from "cors";
+import router from "./app/routes/routes.js";
 
 const app = express();
 app.use(
@@ -16,7 +16,7 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
   next();
 });
-app.options("https://abangku-ecommerce.vercel.app", cors());
+app.options("*", cors());
 app.use(express.json());
 app.use(router);
 
