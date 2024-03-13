@@ -4,24 +4,18 @@ import cors from "cors";
 
 const app = express();
 
+// Mengaktifkan CORS untuk domain yang ditentukan dan mengizinkan credentials
 app.use(
   cors({
-    origin: ["https://abangku-ecommerce.vercel.app"],
-    credentials: true,
+    origin: ["https://abangku-ecommerce.vercel.app"], // Izinkan domain ini untuk membuat request
+    credentials: true, // Izinkan credentials seperti cookies, authorization headers, dll.
   })
 );
 
+// Middleware untuk parsing request dengan content-type - application/json
 app.use(express.json());
 
-// Middleware untuk menambahkan header CORS
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://abangku-ecommerce.vercel.app");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
-});
-
+// Menggunakan router dari file eksternal
 app.use(router);
 
 export default app;
