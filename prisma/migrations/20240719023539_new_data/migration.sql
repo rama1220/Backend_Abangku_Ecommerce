@@ -157,6 +157,7 @@ CREATE TABLE `orders` (
     `payment_url` VARCHAR(191) NULL,
     `transaction_id` VARCHAR(191) NULL,
     `total` DOUBLE NOT NULL,
+    `shipment_fee` DOUBLE NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
@@ -173,8 +174,9 @@ CREATE TABLE `order_items` (
     `size_id` INTEGER NOT NULL,
     `quantity` INTEGER NOT NULL,
     `price` DOUBLE NOT NULL,
+    `weight` DOUBLE NOT NULL,
+    `total_weight` DOUBLE NOT NULL,
     `total_price` DOUBLE NOT NULL,
-    `shipment_fee` DOUBLE NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
@@ -188,6 +190,7 @@ CREATE TABLE `carts` (
     `size_id` INTEGER NOT NULL,
     `product_id` INTEGER NOT NULL,
     `quantity` INTEGER NOT NULL,
+    `total_weight` DOUBLE NOT NULL,
     `total_price` DOUBLE NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
